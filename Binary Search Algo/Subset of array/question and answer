@@ -1,0 +1,110 @@
+Question : https://www.geeksforgeeks.org/problems/array-subset-of-another-array2317/1?page=1&category=Binary%20Search&sortBy=difficulty
+
+Answer :
+
+//{ Driver Code Starts
+//Initial Template for Java
+
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while(t-->0)
+        {
+            StringTokenizer stt = new StringTokenizer(br.readLine());
+            
+            long n = Long.parseLong(stt.nextToken());
+            long m = Long.parseLong(stt.nextToken());
+            long a1[] = new long[(int)(n)];
+            long a2[] = new long[(int)(m)];
+            
+            
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a1[i] = Long.parseLong(inputLine[i]);
+            }
+            String inputLine1[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < m; i++) {
+                a2[i] = Long.parseLong(inputLine1[i]);
+            }
+            
+            
+            Compute obj = new Compute();
+            System.out.println(obj.isSubset( a1, a2, n, m));
+            
+        }
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Compute {
+    public boolean presentIna1(long a1[], long target){
+        
+        //here my aim is to search the given elemet
+        //basic approch is linear search algorithm
+        
+        for (int i = 0; i<a1.length; i++){
+            if (a1[i]==target) return true;
+        }
+        return false;
+    }
+    public String isSubset( long a1[], long a2[], long n, long m) {
+        
+        //have to check whether a2 is a subset of a1 or not
+        
+        //approch
+        //I am planning to get each element of a2 and search it in a1;
+        //if any of the element which is present in a2 but not in a1 , return false;
+        //as it can not be subset in that case
+        //esle return true
+        
+        String ans = "Yes";
+        
+        for (int i = 0; i<m; i++){
+            if(presentIna1(a1, a2[i]) == false) {
+                ans="No";
+                break;
+            }
+            else if(presentIna1(a1, a2[i]) == true) {
+                ans="Yes";
+                continue;
+            }
+        }
+        
+        
+        return ans;
+        
+    }
+    
+//edge cases
+    
+    
+//     51 /209
+// For Input: 
+// 8 4
+// 1 2 3 4 5 6 7 8
+// 1 2 3 1
+// Your Code's output is: 
+// Yes
+// It's Correct output is: 
+// No
+// Output Difference
+// YesNo
+
+
+
+
+
+}
