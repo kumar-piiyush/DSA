@@ -104,7 +104,45 @@ class Compute {
 // YesNo
 
 
+// approch to handle this edge case
+// Approach 1 - Frequency count (Maps)
+// count the occurrences of each element in both arrays. Use maps to store the frequencies of elements in a1 then 
+// For each element in a2, check if it appears at least as many times in a1 as it does in a2. If any element in a2 does not meet this criterion, return "No".
+
+//Approach 2 - Two Pointer (Sort and then compare) - better
+// one is sort both of the arrays and then do two pointer approach 
+// Two-Pointer Technique: Use two pointers, one for each array (a1 and a2). Initialize both pointers at the start of their respective arrays.
+// Traverse the Arrays:
+// If the element pointed to by the pointer in a1 matches the element pointed to by the pointer in a2, move both pointers forward.
+// If the element in a1 is less than the element in a2, move the pointer in a1 forward.
+// If the element in a1 is greater than the element in a2, it means the current element in a2 cannot be found in a1, so you should return "No".
+// Completion Check: If you reach the end of a2 while following the above steps, it means all elements of a2 were found in a1 in the correct order, so return "Yes". If not, return "No".
+// This approach ensures that you efficiently check for the subset condition by leveraging the sorted order of the arrays, with a time complexity of O(n + m).
 
 
+public String isSubset(long a1[], long a2[], long n, long m) {
+    int i = 0, j = 0;
 
+    // Traverse both arrays using two pointers
+    while (i < n && j < m) {
+        if (a1[i] == a2[j]) {
+            i++;
+            j++;
+        } else if (a1[i] < a2[j]) {
+            i++;
+        } else {
+            return "No";
+        }
+    }
+
+    // Check if all elements of a2 were found in a1
+    if (j == m) {
+        return "Yes";
+    } else {
+        return "No";
+    }
+}
+
+
+Now I moved to understand two pointer approach - https://www.youtube.com/watch?v=9kdHxplyl5I&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL
 }
